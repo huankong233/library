@@ -1,0 +1,11 @@
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKBLL.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKBLL.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKDAL.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKModel.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKUtils.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKDAL.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKModel.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\bin\Debug\HKUtils.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\obj\Debug\HKBLL.csprojResolveAssemblyReference.cache
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\obj\Debug\HKBLL.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKBLL\obj\Debug\HKBLL.pdb

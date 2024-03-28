@@ -1,0 +1,5 @@
+C:\Users\huan_kong\Desktop\图书馆\library\HKModel\bin\Debug\HKModel.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKModel\bin\Debug\HKModel.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKModel\obj\Debug\HKModel.csprojResolveAssemblyReference.cache
+C:\Users\huan_kong\Desktop\图书馆\library\HKModel\obj\Debug\HKModel.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKModel\obj\Debug\HKModel.pdb

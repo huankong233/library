@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="nav.master.cs" Inherits="library.nav" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <link href="/assets/css/nav.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="nav">
+        <h3><a href="/index.aspx">图书馆管理系统</a></h3>
+        <div class="menu">
+            <p><a href="/admin/book/case.aspx">书架管理</a></p>
+        </div>
+        <div class="menu">
+            <p>图书管理</p>
+            <div class="item">
+                <a href="/admin/book/type.aspx">图书类型</a>
+                <a href="/admin/book/info.aspx">图书档案</a>
+            </div>
+        </div>
+        <div class="menu">
+            <p>图书借还</p>
+            <div class="item">
+                <a href="/admin/book/borrow.aspx">图书借阅</a>
+                <a href="/admin/book/back.aspx">图书归还</a>
+            </div>
+        </div>
+        <div class="menu">
+            <p>读者管理</p>
+            <div class="item">
+                <a href="/admin/reader/manage.aspx">读者修改</a>
+                <a href="/admin/reader/type.aspx">读者类型</a>
+            </div>
+        </div>
+        <div class="menu">
+            <p><a href="/admin/settings.aspx">系统设置</a></p>
+        </div>
+    </div>
+    <script>
+        const a = document.querySelectorAll(".nav a")
+        a.forEach(item=>location.href.includes(item.getAttribute("href")) ? item.setAttribute("class", "active") : null)
+    </script>
+
+    <form id="form1" runat="server">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

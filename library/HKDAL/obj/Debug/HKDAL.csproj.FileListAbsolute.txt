@@ -1,0 +1,9 @@
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKDAL.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKDAL.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKModel.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKUtils.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKModel.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\bin\Debug\HKUtils.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\obj\Debug\HKDAL.csprojResolveAssemblyReference.cache
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\obj\Debug\HKDAL.dll
+C:\Users\huan_kong\Desktop\图书馆\library\HKDAL\obj\Debug\HKDAL.pdb
