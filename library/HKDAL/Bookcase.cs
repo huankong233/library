@@ -35,5 +35,23 @@ namespace HK.DAL
             }
             return List;
         }
+
+        public static bool Insert(HK.Model.Bookcase Bookcase)
+        {
+            string Sql = "insert into tb_bookcase (name) values ('" + Bookcase.Name + "');";
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
+
+        public static bool Update(HK.Model.Bookcase Bookcase)
+        {
+            string Sql = "update tb_bookcase set name = '" + Bookcase.Name + "' where id = " + Bookcase.Id;
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
+
+        public static bool Delete(int Id)
+        {
+            string Sql = "delete from tb_bookcase where id = " + Id;
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
     }
 }

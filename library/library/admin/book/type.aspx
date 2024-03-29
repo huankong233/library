@@ -19,9 +19,9 @@
         <asp:Button Text="添加" runat="server" ID="submit" class="submit" OnClick="submit_Click"/>
         <div class="clear"></div>
     </div>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting">
         <Columns>
-            <asp:CommandField ButtonType="Button" HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:CommandField HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True"/>
             <asp:BoundField DataField="id" HeaderText="编号" ReadOnly="True" />
             <asp:BoundField DataField="typename" HeaderText="类型名称" />
             <asp:TemplateField HeaderText="可借天数" >

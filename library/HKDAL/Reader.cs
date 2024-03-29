@@ -23,6 +23,13 @@ namespace HK.DAL
             return DtToList(dt)[0];
         }
 
+        public static HK.Model.Reader Get(string Name)
+        {
+            string Sql = "select * from tb_reader where name = '" + Name + "'";
+            DataTable dt = HK.Utils.MsSqlHelper.Query(Sql);
+            return DtToList(dt)[0];
+        }
+
         public static List<HK.Model.Reader> GetByType(int Typeid)
         {
             string Sql = "select * from tb_reader where type = " + Typeid;

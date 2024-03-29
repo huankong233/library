@@ -36,5 +36,23 @@ namespace HK.DAL
             }
             return List;
         }
+
+        public static bool Insert(HK.Model.BookType BookType)
+        {
+            string Sql = "insert into tb_booktype (typename,days) values ('" + BookType.Typename + "'," + BookType.Days + ");";
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
+
+        public static bool Update(HK.Model.BookType BookType)
+        {
+            string Sql = "update tb_booktype set typename = '" + BookType.Typename + "', days = " + BookType.Days + " where id = " + BookType.Id;
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
+
+        public static bool Delete(int Id)
+        {
+            string Sql = "delete from tb_booktype where id = " + Id;
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
+        }
     }
 }

@@ -17,5 +17,33 @@ namespace HK.BLL
         {
             return HK.DAL.Bookcase.Get(Id);
         }
+
+        public static bool Insert(HK.Model.Bookcase Bookcase)
+        {
+            return HK.DAL.Bookcase.Insert(Bookcase);
+        }
+
+        public static bool Update(HK.Model.Bookcase Bookcase)
+        {
+            return HK.DAL.Bookcase.Update(Bookcase);
+        }
+
+        public static string Delete(int Id)
+        {
+            // 检查是否存在关联的书本
+            if (HK.DAL.BookInfo.GetByBookcase(Id).Count > 0)
+            {
+                return "存在关联的书本";
+            }
+
+            if (HK.DAL.Bookcase.Delete(Id))
+            {
+                return "删除成功";
+            }
+            else
+            {
+                return "执行出错";
+            }
+        }
     }
 }

@@ -12,5 +12,25 @@ namespace HK.BLL
         {
             return HK.DAL.BorrowAndBack.Get();
         }
+
+        public static HK.Model.BorrowAndBack Get(int Id)
+        {
+            return HK.DAL.BorrowAndBack.Get(Id);
+        }
+
+        public static List<HK.Model.BorrowAndBack> GetByReaderAndHaveBookNotBack(int Id)
+        {
+            return HK.DAL.BorrowAndBack.GetByReaderAndHaveBookNotBack(Id);
+        }
+
+        public static bool Insert(HK.Model.BorrowAndBack BorrowAndBack)
+        {
+            return HK.DAL.BorrowAndBack.Insert(BorrowAndBack);
+        }
+
+        public static bool Update(HK.Model.BorrowAndBack BorrowAndBack)
+        {
+            return HK.DAL.BorrowAndBack.Update(BorrowAndBack);
+        }
     }
 }

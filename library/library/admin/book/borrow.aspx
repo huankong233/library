@@ -16,7 +16,7 @@
                 <asp:TextBox ID="ISBN" runat="server" required="required"></asp:TextBox>
             </label>
         </div>
-        <asp:Button Text="提交" runat="server" class="submit"/>
+        <asp:Button Text="提交" runat="server" class="submit" ID="Submit" OnClick="Submit_Click"/>
         <div class="clear"></div>
     </div>
 </asp:Content>

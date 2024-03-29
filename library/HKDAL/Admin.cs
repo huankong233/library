@@ -9,12 +9,6 @@ namespace HK.DAL
 {
     public class Admin
     {
-        public static bool Insert(HK.Model.Admin Admin)
-        {
-            string Sql = "insert into tb_admin (name,pwd) values ('" + Admin.Name + "','" + Admin.Pwd + "');";
-            return HK.Utils.MsSqlHelper.NoQuery(Sql);
-        }
-
         public static List<HK.Model.Admin> Get(string Name)
         {
             string Sql = "select * from tb_admin where name = '" + Name + "'";
@@ -41,6 +35,12 @@ namespace HK.DAL
                 List.Add(Admin);
             }
             return List;
+        }
+
+        public static bool Insert(HK.Model.Admin Admin)
+        {
+            string Sql = "insert into tb_admin (name,pwd) values ('" + Admin.Name + "','" + Admin.Pwd + "');";
+            return HK.Utils.MsSqlHelper.NoQuery(Sql);
         }
     }
 }

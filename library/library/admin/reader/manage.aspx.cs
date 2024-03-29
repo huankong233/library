@@ -45,6 +45,8 @@ namespace library.admin.reader
             {
                 HK.Utils.JsHelper.Alert("插入失败");
             }
+
+            BindData();
         }
 
         protected void BindData()

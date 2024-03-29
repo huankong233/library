@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/nav.Master" AutoEventWireup="true" CodeBehind="manage.aspx.cs" Inherits="library.admin.reader.manage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>图书馆管理系统 - 读者增删</title>
 </asp:Content>
@@ -42,13 +43,13 @@
                 <asp:TextBox ID="remark" runat="server" required="required"></asp:TextBox>
             </label>
         </div>
-        <asp:Button Text="添加" ID="submit" runat="server" class="submit" OnClick="Submit_Click"/>
+        <asp:Button Text="添加" ID="submit" runat="server" class="submit" OnClick="Submit_Click" />
         <div class="clear"></div>
     </div>
-    <asp:GridView ID="GridView1" style="width: max-content;" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowDataBound="GridView1_RowDataBound">
+    <asp:GridView ID="GridView1" Style="width: max-content;" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowDataBound="GridView1_RowDataBound">
         <Columns>
             <asp:CommandField HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:BoundField DataField="id" HeaderText="读者编号" ReadOnly="true"/>
+            <asp:BoundField DataField="id" HeaderText="读者编号" ReadOnly="true" />
             <asp:BoundField DataField="name" HeaderText="读者姓名" />
             <asp:TemplateField HeaderText="读者类型">
                 <EditItemTemplate>
@@ -58,9 +59,9 @@
                     <%# Eval("type.Name") %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="读者生日" >
+            <asp:TemplateField HeaderText="读者生日">
                 <EditItemTemplate>
-                    <asp:TextBox ID="birthday" runat="server" type="datetime-local" required="required" value='<%# Convert.ToDateTime(Eval("birthday")).ToString("yyyy-MM-dd HH:mm:ss") %>'></asp:TextBox>                    
+                    <asp:TextBox ID="birthday" runat="server" type="datetime-local" required="required" value='<%# Convert.ToDateTime(Eval("birthday")).ToString("yyyy-MM-dd HH:mm:ss") %>'></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <%# Eval("birthday") %>
@@ -79,7 +80,7 @@
             <asp:BoundField DataField="papernum" HeaderText="证件号码" />
             <asp:TemplateField HeaderText="读者电话">
                 <EditItemTemplate>
-                    <asp:TextBox ID="tel" runat="server" required="required" type="tel" value='<%# Eval("tel") %>'/>
+                    <asp:TextBox ID="tel" runat="server" required="required" type="tel" value='<%# Eval("tel") %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <%# Eval("tel") %>
@@ -87,7 +88,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="读者邮箱">
                 <EditItemTemplate>
-                    <asp:TextBox ID="email" runat="server" required="required" type="email" value='<%# Eval("email") %>'/>
+                    <asp:TextBox ID="email" runat="server" required="required" type="email" value='<%# Eval("email") %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <%# Eval("email") %>
@@ -96,7 +97,7 @@
             <asp:BoundField DataField="remark" HeaderText="读者备注" />
             <asp:TemplateField HeaderText="借书总数">
                 <EditItemTemplate>
-                    <asp:TextBox ID="borrownum" runat="server" required="required" type="number" value='<%# Eval("borrownum") %>'/>
+                    <asp:TextBox ID="borrownum" runat="server" required="required" type="number" value='<%# Eval("borrownum") %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <%# Eval("borrownum") %>
@@ -104,7 +105,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="借阅次数">
                 <EditItemTemplate>
-                    <asp:TextBox ID="num" runat="server" required="required" type="number"  value='<%# Eval("num") %>'/>
+                    <asp:TextBox ID="num" runat="server" required="required" type="number" value='<%# Eval("num") %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <%# Eval("num") %>

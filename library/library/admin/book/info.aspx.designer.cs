@@ -13,6 +13,15 @@ namespace library.admin.book {
     public partial class info {
         
         /// <summary>
+        /// ISBN 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ISBN;
+        
+        /// <summary>
         /// name 控件。
         /// </summary>
         /// <remarks>
@@ -31,93 +40,84 @@ namespace library.admin.book {
         protected global::System.Web.UI.WebControls.DropDownList type;
         
         /// <summary>
-        /// papertype 控件。
+        /// author 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList papertype;
+        protected global::System.Web.UI.WebControls.TextBox author;
         
         /// <summary>
-        /// papernum 控件。
+        /// translator 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox papernum;
+        protected global::System.Web.UI.WebControls.TextBox translator;
         
         /// <summary>
-        /// birthday 控件。
+        /// pubname 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox birthday;
+        protected global::System.Web.UI.WebControls.TextBox pubname;
         
         /// <summary>
-        /// tel 控件。
+        /// price 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tel;
+        protected global::System.Web.UI.WebControls.TextBox price;
         
         /// <summary>
-        /// email 控件。
+        /// bookpage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox bookpage;
         
         /// <summary>
-        /// remark 控件。
+        /// bcase 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox remark;
+        protected global::System.Web.UI.WebControls.DropDownList bcase;
         
         /// <summary>
-        /// TextBox1 控件。
+        /// storage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox storage;
         
         /// <summary>
-        /// TextBox2 控件。
+        /// Submit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.Button Submit;
         
         /// <summary>
-        /// TextBox3 控件。
+        /// GridView1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
-        
-        /// <summary>
-        /// TextBox4 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }
