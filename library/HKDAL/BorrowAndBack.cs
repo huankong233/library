@@ -69,6 +69,12 @@ namespace HK.DAL
                 return false;
             }
 
+            // 检查图书库存是否充足
+            if (BorrowAndBack.Bookcode.Storage - 1 < 0)
+            {
+                return false;
+            }
+
             // 更新读者信息
             BorrowAndBack.Reader.Borrownum += 1;
             BorrowAndBack.Reader.Num += 1;
@@ -81,7 +87,7 @@ namespace HK.DAL
 
             // 插入借阅记录
             string BorrowAndBackSql = "insert into tb_borrowandback (reader,bookcode,borrowtime,ygbacktime,borrowoper,isback) values ('" + BorrowAndBack.Reader.Id + "','" + BorrowAndBack.Bookcode.Bookcode + "','" + BorrowAndBack.Borrowtime + "','" + BorrowAndBack.Ygbacktime + "'," + BorrowAndBack.Borrowoper.Id + ",'" + BorrowAndBack.Isback + "');";
-            bool BorrowAndBackResult =  HK.Utils.MsSqlHelper.NoQuery(BorrowAndBackSql);
+            bool BorrowAndBackResult = HK.Utils.MsSqlHelper.NoQuery(BorrowAndBackSql);
 
             return ReaderResult && BookInfoResult && BorrowAndBackResult;
         }
