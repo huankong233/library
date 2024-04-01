@@ -63,7 +63,7 @@ namespace HK.DAL
 
         public static bool Insert(HK.Model.Reader Reader)
         {
-            string Sql = "insert into tb_reader (name,type,birthday,papertype,papernum,tel,email,createdate,oper,remark,borrownum,num) values ('" + Reader.Name + "','" + Reader.Type.Id + "','" + Reader.Birthday + "','" + Reader.Papertype + "','" + Reader.Papernum + "','" + Reader.Tel + "','" + Reader.Email + "','" + Reader.Createdate + "','" + Reader.Oper.Id + "','" + Reader.Remark + "','" + Reader.Borrownum + "','" + Reader.Num + "');";
+            string Sql = "insert into tb_reader (id,name,type,birthday,papertype,papernum,tel,email,createdate,oper,remark,borrownum,num) values ('"+ (HK.Utils.MsSqlHelper.getNowIndex("tb_reader") + 1) + "','" + Reader.Name + "','" + Reader.Type.Id + "','" + Reader.Birthday + "','" + Reader.Papertype + "','" + Reader.Papernum + "','" + Reader.Tel + "','" + Reader.Email + "','" + Reader.Createdate + "','" + Reader.Oper.Id + "','" + Reader.Remark + "','" + Reader.Borrownum + "','" + Reader.Num + "');";
             return HK.Utils.MsSqlHelper.NoQuery(Sql);
         }
 

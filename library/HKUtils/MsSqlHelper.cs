@@ -31,7 +31,18 @@ namespace HK.Utils
             SqlCommand Cmd = new SqlCommand(Sql, Conn);
             int Rows = Cmd.ExecuteNonQuery();
             Conn.Close();
-            return Rows > 0; 
+            return Rows > 0;
+        }
+
+        public static int getNowIndex(string DBName, string IDCol = "id")
+        {
+            string Sql = "SELECT TOP 1 * FROM " + DBName + " order by " + IDCol + " desc";
+            DataTable Dt = Query(Sql);
+            if (Dt.Rows.Count == 0)
+            {
+                return 1;
+            }
+            return int.Parse(Dt.Rows[0][IDCol].ToString());
         }
     }
 }

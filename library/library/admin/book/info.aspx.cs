@@ -45,6 +45,15 @@ namespace library.admin.book
             BookInfo.InTime = DateTime.Now;
             BookInfo.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
             BookInfo.Borrownum = 0;
+
+            // 判断ISBN是否重复
+
+            if (HK.BLL.BookInfo.Get(BookInfo.Bookcode) != null)
+            {
+                HK.Utils.JsHelper.Alert("插入失败,ISBN重复");
+                return;
+            }
+
             if (HK.BLL.BookInfo.Insert(BookInfo))
             {
                 HK.Utils.JsHelper.Alert("插入成功");

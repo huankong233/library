@@ -39,7 +39,7 @@ namespace HK.DAL
 
         public static bool Insert(HK.Model.Admin Admin)
         {
-            string Sql = "insert into tb_admin (name,pwd) values ('" + Admin.Name + "','" + Admin.Pwd + "');";
+            string Sql = "insert into tb_admin (id,name,pwd) values ('" + (HK.Utils.MsSqlHelper.getNowIndex("tb_admin") + 1) + "','" + Admin.Name + "','" + Admin.Pwd + "');";
             return HK.Utils.MsSqlHelper.NoQuery(Sql);
         }
     }

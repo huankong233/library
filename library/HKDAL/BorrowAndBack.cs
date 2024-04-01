@@ -86,7 +86,7 @@ namespace HK.DAL
             bool BookInfoResult = HK.DAL.BookInfo.Update(BorrowAndBack.Bookcode);
 
             // 插入借阅记录
-            string BorrowAndBackSql = "insert into tb_borrowandback (reader,bookcode,borrowtime,ygbacktime,borrowoper,isback) values ('" + BorrowAndBack.Reader.Id + "','" + BorrowAndBack.Bookcode.Bookcode + "','" + BorrowAndBack.Borrowtime + "','" + BorrowAndBack.Ygbacktime + "'," + BorrowAndBack.Borrowoper.Id + ",'" + BorrowAndBack.Isback + "');";
+            string BorrowAndBackSql = "insert into tb_borrowandback (id,reader,bookcode,borrowtime,ygbacktime,borrowoper,isback) values ('"+ (HK.Utils.MsSqlHelper.getNowIndex("tb_borrowandback") + 1) + "','" + BorrowAndBack.Reader.Id + "','" + BorrowAndBack.Bookcode.Bookcode + "','" + BorrowAndBack.Borrowtime + "','" + BorrowAndBack.Ygbacktime + "'," + BorrowAndBack.Borrowoper.Id + ",'" + BorrowAndBack.Isback + "');";
             bool BorrowAndBackResult = HK.Utils.MsSqlHelper.NoQuery(BorrowAndBackSql);
 
             return ReaderResult && BookInfoResult && BorrowAndBackResult;

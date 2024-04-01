@@ -26,7 +26,7 @@ namespace HK.DAL
         public static List<HK.Model.BookType> DtToList(DataTable Dt)
         {
             List<HK.Model.BookType> List = new List<HK.Model.BookType>();
-            foreach(DataRow Row in Dt.Rows)
+            foreach (DataRow Row in Dt.Rows)
             {
                 HK.Model.BookType Type = new HK.Model.BookType();
                 Type.Id = int.Parse(Row["id"].ToString());

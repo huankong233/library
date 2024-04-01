@@ -38,7 +38,7 @@ namespace HK.DAL
 
         public static bool Insert(HK.Model.Bookcase Bookcase)
         {
-            string Sql = "insert into tb_bookcase (name) values ('" + Bookcase.Name + "');";
+            string Sql = "insert into tb_bookcase (id,name) values ('" + (HK.Utils.MsSqlHelper.getNowIndex("tb_bookcase") + 1) + "','" + Bookcase.Name + "');";
             return HK.Utils.MsSqlHelper.NoQuery(Sql);
         }
 
