@@ -30,6 +30,13 @@ namespace HK.DAL
             return DtToList(dt)[0];
         }
 
+        public static List<HK.Model.Reader> Rank()
+        {
+            string Sql = "SELECT TOP 10 * FROM tb_reader ORDER BY num DESC";
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            return DtToList(Dt);
+        }
+
         public static List<HK.Model.Reader> GetByType(int Typeid)
         {
             string Sql = "select * from tb_reader where type = " + Typeid;

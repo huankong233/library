@@ -20,7 +20,21 @@ namespace HK.DAL
         {
             string Sql = "select * from tb_bookinfo where bookcode = '" + Bookcode + "'";
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt)[0];
+            if (DtToList(Dt).Count>0)
+            {
+                return DtToList(Dt)[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static List<HK.Model.BookInfo> Rank()
+        {
+            string Sql = "SELECT TOP 10 * FROM tb_bookinfo ORDER BY borrownum DESC";
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            return DtToList(Dt);
         }
 
         public static List<HK.Model.BookInfo> GetByBookcase(int Id)

@@ -11,7 +11,15 @@ namespace library
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack) return;
 
+            List<HK.Model.BookInfo> BookRank = HK.BLL.BookInfo.Rank();
+            GridView1.DataSource = BookRank;
+            GridView1.DataBind();
+
+            List<HK.Model.Reader> ReaderRank = HK.BLL.Reader.Rank();
+            GridView2.DataSource = ReaderRank;
+            GridView2.DataBind();
         }
     }
 }

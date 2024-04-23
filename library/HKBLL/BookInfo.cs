@@ -18,6 +18,11 @@ namespace HK.BLL
             return HK.DAL.BookInfo.Get(Bookcode);
         }
 
+        public static List<HK.Model.BookInfo> Rank()
+        {
+            return HK.DAL.BookInfo.Rank();
+        }
+
         public static List<HK.Model.BookInfo> GetByBookcase(int Id)
         {
             return HK.DAL.BookInfo.GetByBookcase(Id);

@@ -24,6 +24,11 @@ namespace HK.BLL
             return HK.DAL.Reader.Get(Name);
         }
 
+        public static List<HK.Model.Reader> Rank()
+        {
+            return HK.DAL.Reader.Rank();
+        }
+
         public static List<HK.Model.Reader> GetByType(int Typeid)
         {
             return HK.DAL.Reader.GetByType(Typeid);
