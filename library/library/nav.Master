@@ -38,6 +38,9 @@
         <div class="menu">
             <p><a href="/admin/settings.aspx">系统设置</a></p>
         </div>
+        <div class="menu">
+            <p><a href="/logout.aspx">退出登陆</a></p>
+        </div>
     </div>
     <script>
         const a = document.querySelectorAll(".nav a")

@@ -49,7 +49,7 @@ namespace library
 
             if (HK.BLL.Admin.Insert(Admin))
             {
-                Response.Write("<script>setTimeout(()=>location.href='./login.aspx',1500)</script>");
+                HK.Utils.JsHelper.Move("./login.aspx", 1500);
                 Success("注册成功");
             }
             else

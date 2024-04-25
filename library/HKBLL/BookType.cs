@@ -13,6 +13,11 @@ namespace HK.BLL
             return HK.DAL.BookType.Get();
         }
 
+        public static HK.Model.BookType Get(string Name)
+        {
+            return HK.DAL.BookType.Get(Name);
+        }
+
         public static HK.Model.BookType Get(int Id)
         {
             return HK.DAL.BookType.Get(Id);

@@ -19,6 +19,11 @@ namespace HK.BLL
             return HK.DAL.ReaderType.Get(Id);
         }
 
+        public static HK.Model.ReaderType Get(string Name)
+        {
+            return HK.DAL.ReaderType.Get(Name);
+        }
+
         public static bool Insert(HK.Model.ReaderType Readertype)
         {
             return HK.DAL.ReaderType.Insert(Readertype);

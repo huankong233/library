@@ -20,7 +20,30 @@ namespace HK.DAL
         {
             string Sql = "select * from tb_readertype where id = " + Id;
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt)[0];
+            List<HK.Model.ReaderType> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
+        }
+
+        public static HK.Model.ReaderType Get(string Name)
+        {
+            string Sql = "select * from tb_readertype where name = " + Name;
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            List<HK.Model.ReaderType> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static List<HK.Model.ReaderType> DtToList(DataTable Dt)

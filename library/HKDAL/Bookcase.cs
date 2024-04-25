@@ -16,11 +16,34 @@ namespace HK.DAL
             return DtToList(Dt);
         }
 
+        public static HK.Model.Bookcase Get(string Name)
+        {
+            string Sql = "select * from tb_bookcase where name = '" + Name + "'";
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            List<HK.Model.Bookcase> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
+        }
+
         public static HK.Model.Bookcase Get(int Id)
         {
             string Sql = "select * from tb_bookcase where id = " + Id;
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt)[0];
+            List<HK.Model.Bookcase> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static List<HK.Model.Bookcase> DtToList(DataTable Dt)

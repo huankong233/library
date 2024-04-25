@@ -31,36 +31,43 @@ namespace library.admin.book
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            HK.Model.BookInfo BookInfo = new HK.Model.BookInfo();
-            BookInfo.Bookcode = ISBN.Text;
-            BookInfo.Bookname = name.Text;
-            BookInfo.Type = HK.BLL.BookType.Get(int.Parse(type.Text));
-            BookInfo.Author = author.Text;
-            BookInfo.Translator = translator.Text;
-            BookInfo.Pubname = pubname.Text;
-            BookInfo.Price = int.Parse(price.Text);
-            BookInfo.Page = int.Parse(bookpage.Text);
-            BookInfo.Bcase = HK.BLL.Bookcase.Get(int.Parse(bcase.Text));
-            BookInfo.Storage = long.Parse(storage.Text);
-            BookInfo.InTime = DateTime.Now;
-            BookInfo.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
-            BookInfo.Borrownum = 0;
-
-            // 判断ISBN是否重复
-
-            if (HK.BLL.BookInfo.Get(BookInfo.Bookcode) != null)
+            try
             {
-                HK.Utils.JsHelper.Alert("插入失败,ISBN重复");
-                return;
+                HK.Model.BookInfo BookInfo = new HK.Model.BookInfo();
+                BookInfo.Bookcode = ISBN.Text;
+                BookInfo.Bookname = name.Text;
+                BookInfo.Type = HK.BLL.BookType.Get(int.Parse(type.Text));
+                BookInfo.Author = author.Text;
+                BookInfo.Translator = translator.Text;
+                BookInfo.Pubname = pubname.Text;
+                BookInfo.Price = int.Parse(price.Text);
+                BookInfo.Page = int.Parse(bookpage.Text);
+                BookInfo.Bcase = HK.BLL.Bookcase.Get(int.Parse(bcase.Text));
+                BookInfo.Storage = long.Parse(storage.Text);
+                BookInfo.InTime = DateTime.Now;
+                BookInfo.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
+                BookInfo.Borrownum = 0;
+
+                // 判断ISBN是否重复
+
+                if (HK.BLL.BookInfo.Get(BookInfo.Bookcode) != null)
+                {
+                    HK.Utils.JsHelper.Alert("插入失败,ISBN重复");
+                    return;
+                }
+
+                if (HK.BLL.BookInfo.Insert(BookInfo))
+                {
+                    HK.Utils.JsHelper.Alert("插入成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("插入失败");
+                }
             }
-
-            if (HK.BLL.BookInfo.Insert(BookInfo))
+            catch
             {
-                HK.Utils.JsHelper.Alert("插入成功");
-            }
-            else
-            {
-                HK.Utils.JsHelper.Alert("插入失败");
+                HK.Utils.JsHelper.Alert("插入失败，请检查提交的数据是否合法");
             }
 
             BindData();
@@ -86,30 +93,38 @@ namespace library.admin.book
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            HK.Model.BookInfo BookInfo = new HK.Model.BookInfo();
-            BookInfo.Bookcode = Row.Cells[1].Text;
-            BookInfo.Bookname = ((TextBox)Row.Cells[2].Controls[0]).Text;
-            BookInfo.Type = HK.BLL.BookType.Get(int.Parse(((DropDownList)Row.Cells[3].Controls[1]).Text));
-            BookInfo.Author = ((TextBox)Row.Cells[4].Controls[0]).Text;
-            BookInfo.Translator = ((TextBox)Row.Cells[5].Controls[0]).Text;
-            BookInfo.Pubname = ((TextBox)Row.Cells[6].Controls[0]).Text;
-            BookInfo.Price = decimal.Parse(((TextBox)Row.Cells[7].Controls[0]).Text);
-            BookInfo.Page = int.Parse(((TextBox)Row.Cells[8].Controls[0]).Text);
-            BookInfo.Bcase = HK.BLL.Bookcase.Get(int.Parse(((DropDownList)Row.Cells[9].Controls[1]).Text));
-            BookInfo.Storage = long.Parse(((TextBox)Row.Cells[10].Controls[1]).Text);
-            BookInfo.InTime = Convert.ToDateTime(((TextBox)Row.Cells[11].Controls[1]).Text);
-            BookInfo.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
-            BookInfo.Borrownum = int.Parse(((TextBox)Row.Cells[12].Controls[1]).Text);
+            try
+            {
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                HK.Model.BookInfo BookInfo = new HK.Model.BookInfo();
+                BookInfo.Bookcode = Row.Cells[1].Text;
+                BookInfo.Bookname = ((TextBox)Row.Cells[2].Controls[0]).Text;
+                BookInfo.Type = HK.BLL.BookType.Get(int.Parse(((DropDownList)Row.Cells[3].Controls[1]).Text));
+                BookInfo.Author = ((TextBox)Row.Cells[4].Controls[0]).Text;
+                BookInfo.Translator = ((TextBox)Row.Cells[5].Controls[0]).Text;
+                BookInfo.Pubname = ((TextBox)Row.Cells[6].Controls[0]).Text;
+                BookInfo.Price = decimal.Parse(((TextBox)Row.Cells[7].Controls[0]).Text);
+                BookInfo.Page = int.Parse(((TextBox)Row.Cells[8].Controls[0]).Text);
+                BookInfo.Bcase = HK.BLL.Bookcase.Get(int.Parse(((DropDownList)Row.Cells[9].Controls[1]).Text));
+                BookInfo.Storage = long.Parse(((TextBox)Row.Cells[10].Controls[1]).Text);
+                BookInfo.InTime = Convert.ToDateTime(((TextBox)Row.Cells[11].Controls[1]).Text);
+                BookInfo.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
+                BookInfo.Borrownum = int.Parse(((TextBox)Row.Cells[12].Controls[1]).Text);
 
-            if (HK.BLL.BookInfo.Update(BookInfo))
-            {
-                HK.Utils.JsHelper.Alert("更新成功");
+                if (HK.BLL.BookInfo.Update(BookInfo))
+                {
+                    HK.Utils.JsHelper.Alert("更新成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("更新失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("更新失败");
+                HK.Utils.JsHelper.Alert("更新失败，请检查提交的数据是否合法");
             }
+
 
             GridView1.EditIndex = -1;
             BindData();
@@ -117,17 +132,25 @@ namespace library.admin.book
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            string Id = Row.Cells[1].Text;
-            string Msg = HK.BLL.BookInfo.Delete(Id);
-            if (Msg == "删除成功")
+            try
             {
-                HK.Utils.JsHelper.Alert("删除成功");
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                string Id = Row.Cells[1].Text;
+                string Msg = HK.BLL.BookInfo.Delete(Id);
+                if (Msg == "删除成功")
+                {
+                    HK.Utils.JsHelper.Alert("删除成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                HK.Utils.JsHelper.Alert("删除失败，数据可能不存在");
             }
+
             BindData();
         }
 

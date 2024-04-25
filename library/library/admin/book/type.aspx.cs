@@ -17,16 +17,31 @@ namespace library.admin.book
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            HK.Model.BookType BookType = new HK.Model.BookType();
-            BookType.Typename = name.Text;
-            BookType.Days = int.Parse(days.Text);
-            if (HK.BLL.BookType.Insert(BookType))
+            try
             {
-                HK.Utils.JsHelper.Alert("插入成功");
+                HK.Model.BookType BookType = new HK.Model.BookType();
+                BookType.Typename = name.Text;
+                BookType.Days = int.Parse(days.Text);
+
+                if (HK.BLL.BookType.Get(BookType.Typename) != null)
+                {
+                    HK.Utils.JsHelper.Alert("图书类型重复");
+                    BindData();
+                    return;
+                }
+
+                if (HK.BLL.BookType.Insert(BookType))
+                {
+                    HK.Utils.JsHelper.Alert("插入成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("插入失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("插入失败");
+                HK.Utils.JsHelper.Alert("插入失败，请检查提交的数据是否合法");
             }
 
             BindData();
@@ -52,20 +67,29 @@ namespace library.admin.book
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            HK.Model.BookType BookType = new HK.Model.BookType();
-            BookType.Id = int.Parse(Row.Cells[1].Text);
-            BookType.Typename = ((TextBox)Row.Cells[2].Controls[0]).Text;
-            BookType.Days = int.Parse(((TextBox)Row.Cells[3].Controls[1]).Text);
+            try
+            {
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                HK.Model.BookType BookType = new HK.Model.BookType();
+                BookType.Id = int.Parse(Row.Cells[1].Text);
+                BookType.Typename = ((TextBox)Row.Cells[2].Controls[0]).Text;
+                BookType.Days = int.Parse(((TextBox)Row.Cells[3].Controls[1]).Text);
 
-            if (HK.BLL.BookType.Update(BookType))
-            {
-                HK.Utils.JsHelper.Alert("更新成功");
+                if (HK.BLL.BookType.Update(BookType))
+                {
+                    HK.Utils.JsHelper.Alert("更新成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("更新失败");
+                }
+
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("更新失败");
+                HK.Utils.JsHelper.Alert("更新失败，请检查提交的数据是否合法");
             }
+
 
             GridView1.EditIndex = -1;
             BindData();
@@ -73,17 +97,25 @@ namespace library.admin.book
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            int Id = int.Parse(Row.Cells[1].Text);
-            string Msg = HK.BLL.BookType.Delete(Id);
-            if (Msg == "删除成功")
+            try
             {
-                HK.Utils.JsHelper.Alert("删除成功");
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                int Id = int.Parse(Row.Cells[1].Text);
+                string Msg = HK.BLL.BookType.Delete(Id);
+                if (Msg == "删除成功")
+                {
+                    HK.Utils.JsHelper.Alert("删除成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                HK.Utils.JsHelper.Alert("删除失败，数据可能不存在");
             }
+            
             BindData();
         }
     }

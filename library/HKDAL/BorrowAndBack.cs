@@ -20,7 +20,15 @@ namespace HK.DAL
         {
             string Sql = "select * from tb_borrowandback where id = " + Id;
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt)[0];
+            List<HK.Model.BorrowAndBack> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static List<HK.Model.BorrowAndBack> GetByReaderAndHaveBookNotBack(int Id)

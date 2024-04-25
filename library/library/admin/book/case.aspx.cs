@@ -18,15 +18,30 @@ namespace library.admin.book
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            HK.Model.Bookcase Bookcase = new HK.Model.Bookcase();
-            Bookcase.Name = name.Text;
-            if (HK.BLL.Bookcase.Insert(Bookcase))
+            try
             {
-                HK.Utils.JsHelper.Alert("插入成功");
+                HK.Model.Bookcase Bookcase = new HK.Model.Bookcase();
+                Bookcase.Name = name.Text;
+
+                if (HK.BLL.Bookcase.Get(Bookcase.Name) != null)
+                {
+                    HK.Utils.JsHelper.Alert("书架名称重复");
+                    BindData();
+                    return;
+                }
+
+                if (HK.BLL.Bookcase.Insert(Bookcase))
+                {
+                    HK.Utils.JsHelper.Alert("插入成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("插入失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("插入失败");
+                HK.Utils.JsHelper.Alert("插入失败，请检查提交的数据是否合法");
             }
 
             BindData();
@@ -52,18 +67,25 @@ namespace library.admin.book
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            HK.Model.Bookcase Bookcase = new HK.Model.Bookcase();
-            Bookcase.Id = int.Parse(Row.Cells[1].Text);
-            Bookcase.Name = ((TextBox)Row.Cells[2].Controls[0]).Text;
+            try
+            {
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                HK.Model.Bookcase Bookcase = new HK.Model.Bookcase();
+                Bookcase.Id = int.Parse(Row.Cells[1].Text);
+                Bookcase.Name = ((TextBox)Row.Cells[2].Controls[0]).Text;
 
-            if (HK.BLL.Bookcase.Update(Bookcase))
-            {
-                HK.Utils.JsHelper.Alert("更新成功");
+                if (HK.BLL.Bookcase.Update(Bookcase))
+                {
+                    HK.Utils.JsHelper.Alert("更新成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("更新失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("更新失败");
+                HK.Utils.JsHelper.Alert("更新失败，请检查提交的数据是否合法");
             }
 
             GridView1.EditIndex = -1;
@@ -72,17 +94,25 @@ namespace library.admin.book
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            int Id = int.Parse(Row.Cells[1].Text);
-            string Msg = HK.BLL.Bookcase.Delete(Id);
-            if (Msg == "删除成功")
+            try
             {
-                HK.Utils.JsHelper.Alert("删除成功");
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                int Id = int.Parse(Row.Cells[1].Text);
+                string Msg = HK.BLL.Bookcase.Delete(Id);
+                if (Msg == "删除成功")
+                {
+                    HK.Utils.JsHelper.Alert("删除成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                HK.Utils.JsHelper.Alert("删除失败，数据可能不存在");
             }
+
             BindData();
         }
     }

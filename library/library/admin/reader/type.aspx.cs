@@ -17,17 +17,31 @@ namespace library.admin.reader
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            HK.Model.ReaderType Readertype = new HK.Model.ReaderType();
-            Readertype.Name = name.Text;
-            Readertype.Number = int.Parse(num.Text);
-            if (HK.BLL.ReaderType.Insert(Readertype))
+            try
             {
-                HK.Utils.JsHelper.Alert("插入成功");
+                HK.Model.ReaderType Readertype = new HK.Model.ReaderType();
+                Readertype.Name = name.Text;
+                Readertype.Number = int.Parse(num.Text);
+                if (HK.BLL.ReaderType.Get(Readertype.Name) != null){
+                    HK.Utils.JsHelper.Alert("读者类型重复");
+                    BindData();
+                    return;
+                }
+
+                if (HK.BLL.ReaderType.Insert(Readertype))
+                {
+                    HK.Utils.JsHelper.Alert("插入成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("插入失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("插入失败");
+                HK.Utils.JsHelper.Alert("插入失败，请检查提交的数据是否合法");
             }
+
 
             BindData();
         }
@@ -52,20 +66,28 @@ namespace library.admin.reader
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            HK.Model.ReaderType Readertype = new HK.Model.ReaderType();
-            Readertype.Id = int.Parse(Row.Cells[1].Text);
-            Readertype.Name = ((TextBox)(Row.Cells[2].Controls[0])).Text;
-            Readertype.Number = int.Parse(((TextBox)(Row.Cells[3].Controls[0])).Text);
+            try
+            {
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                HK.Model.ReaderType Readertype = new HK.Model.ReaderType();
+                Readertype.Id = int.Parse(Row.Cells[1].Text);
+                Readertype.Name = ((TextBox)(Row.Cells[2].Controls[0])).Text;
+                Readertype.Number = int.Parse(((TextBox)(Row.Cells[3].Controls[0])).Text);
 
-            if (HK.BLL.ReaderType.Update(Readertype))
-            {
-                HK.Utils.JsHelper.Alert("更新成功");
+                if (HK.BLL.ReaderType.Update(Readertype))
+                {
+                    HK.Utils.JsHelper.Alert("更新成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("更新失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("更新失败");
+                HK.Utils.JsHelper.Alert("更新失败，请检查提交的数据是否合法");
             }
+
 
             GridView1.EditIndex = -1;
             BindData();
@@ -73,14 +95,22 @@ namespace library.admin.reader
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            string Msg = HK.BLL.ReaderType.Delete(int.Parse(Row.Cells[1].Text));
-            if (Msg == "删除成功"){
-                HK.Utils.JsHelper.Alert("删除成功");
-            }
-            else
+            try
             {
-                HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                string Msg = HK.BLL.ReaderType.Delete(int.Parse(Row.Cells[1].Text));
+                if (Msg == "删除成功")
+                {
+                    HK.Utils.JsHelper.Alert("删除成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                }
+            }
+            catch
+            {
+                HK.Utils.JsHelper.Alert("删除失败，数据可能不存在");
             }
 
             BindData();

@@ -24,26 +24,43 @@ namespace library.admin.reader
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            HK.Model.Reader Reader = new HK.Model.Reader();
-            Reader.Name = name.Text;
-            Reader.Type = HK.BLL.ReaderType.Get(int.Parse(type.Text));
-            Reader.Birthday = Convert.ToDateTime(birthday.Text);
-            Reader.Papertype = papertype.Text;
-            Reader.Papernum = papernum.Text;
-            Reader.Tel = tel.Text;
-            Reader.Email = email.Text;
-            Reader.Createdate = DateTime.Now;
-            Reader.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
-            Reader.Remark = remark.Text;
-            Reader.Borrownum = 0;
-            Reader.Num = 0;
-            if (HK.BLL.Reader.Insert(Reader))
+            try
             {
-                HK.Utils.JsHelper.Alert("插入成功");
+                HK.Model.Reader Reader = new HK.Model.Reader();
+                Reader.Name = name.Text;
+                Reader.Type = HK.BLL.ReaderType.Get(int.Parse(type.Text));
+                Reader.Birthday = Convert.ToDateTime(birthday.Text);
+                Reader.Papertype = papertype.Text;
+                Reader.Papernum = papernum.Text;
+                Reader.Tel = tel.Text;
+                Reader.Email = email.Text;
+                Reader.Createdate = DateTime.Now;
+                Reader.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
+                Reader.Remark = remark.Text;
+                Reader.Borrownum = 0;
+                Reader.Num = 0;
+
+                // 判断是否存在
+                if (HK.BLL.Reader.Get(Reader.Name) != null)
+                {
+                    HK.Utils.JsHelper.Alert("读者用户名重复");
+                    BindData();
+                    return;
+                }
+
+                if (HK.BLL.Reader.Insert(Reader))
+                {
+                    HK.Utils.JsHelper.Alert("插入成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("插入失败");
+                }
+
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("插入失败");
+                HK.Utils.JsHelper.Alert("插入失败，请检查提交的数据是否合法");
             }
 
             BindData();
@@ -69,29 +86,37 @@ namespace library.admin.reader
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            HK.Model.Reader Reader = new HK.Model.Reader();
-            Reader.Id = int.Parse(Row.Cells[1].Text);
-            Reader.Name = ((TextBox)Row.Cells[2].Controls[0]).Text;
-            Reader.Type = HK.BLL.ReaderType.Get(int.Parse(((DropDownList)Row.Cells[3].Controls[1]).Text));
-            Reader.Birthday = Convert.ToDateTime(((TextBox)Row.Cells[4].Controls[1]).Text);
-            Reader.Papertype = ((DropDownList)Row.Cells[5].Controls[1]).Text;
-            Reader.Papernum = ((TextBox)Row.Cells[6].Controls[0]).Text;
-            Reader.Tel = ((TextBox)Row.Cells[7].Controls[1]).Text;
-            Reader.Email = ((TextBox)Row.Cells[8].Controls[1]).Text;
-            Reader.Remark = ((TextBox)Row.Cells[9].Controls[0]).Text;
-            Reader.Borrownum = int.Parse(((TextBox)Row.Cells[10].Controls[1]).Text);
-            Reader.Num = int.Parse(((TextBox)Row.Cells[11].Controls[1]).Text);
-            Reader.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
+            try
+            {
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                HK.Model.Reader Reader = new HK.Model.Reader();
+                Reader.Id = int.Parse(Row.Cells[1].Text);
+                Reader.Name = ((TextBox)Row.Cells[2].Controls[0]).Text;
+                Reader.Type = HK.BLL.ReaderType.Get(int.Parse(((DropDownList)Row.Cells[3].Controls[1]).Text));
+                Reader.Birthday = Convert.ToDateTime(((TextBox)Row.Cells[4].Controls[1]).Text);
+                Reader.Papertype = ((DropDownList)Row.Cells[5].Controls[1]).Text;
+                Reader.Papernum = ((TextBox)Row.Cells[6].Controls[0]).Text;
+                Reader.Tel = ((TextBox)Row.Cells[7].Controls[1]).Text;
+                Reader.Email = ((TextBox)Row.Cells[8].Controls[1]).Text;
+                Reader.Remark = ((TextBox)Row.Cells[9].Controls[0]).Text;
+                Reader.Borrownum = int.Parse(((TextBox)Row.Cells[10].Controls[1]).Text);
+                Reader.Num = int.Parse(((TextBox)Row.Cells[11].Controls[1]).Text);
+                Reader.Oper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
 
-            if (HK.BLL.Reader.Update(Reader))
-            {
-                HK.Utils.JsHelper.Alert("更新成功");
+                if (HK.BLL.Reader.Update(Reader))
+                {
+                    HK.Utils.JsHelper.Alert("更新成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("更新失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("更新失败");
+                HK.Utils.JsHelper.Alert("更新失败，请检查提交的数据是否合法");
             }
+
 
             GridView1.EditIndex = -1;
             BindData();
@@ -99,17 +124,25 @@ namespace library.admin.reader
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow Row = GridView1.Rows[e.RowIndex];
-            int Id = int.Parse(Row.Cells[1].Text);
-            string Msg = HK.BLL.Reader.Delete(Id);
-            if (Msg == "删除成功")
+            try
             {
-                HK.Utils.JsHelper.Alert("删除成功");
+                GridViewRow Row = GridView1.Rows[e.RowIndex];
+                int Id = int.Parse(Row.Cells[1].Text);
+                string Msg = HK.BLL.Reader.Delete(Id);
+                if (Msg == "删除成功")
+                {
+                    HK.Utils.JsHelper.Alert("删除成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("删除失败,原因:" + Msg);
+                HK.Utils.JsHelper.Alert("删除失败，数据可能不存在");
             }
+
             BindData();
         }
 

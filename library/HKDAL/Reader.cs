@@ -12,22 +12,38 @@ namespace HK.DAL
         public static List<HK.Model.Reader> Get()
         {
             string Sql = "select * from tb_reader";
-            DataTable dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(dt);
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            return DtToList(Dt);
         }
 
         public static HK.Model.Reader Get(int Id)
         {
             string Sql = "select * from tb_reader where id = " + Id;
-            DataTable dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(dt)[0];
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            List<HK.Model.Reader> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static HK.Model.Reader Get(string Name)
         {
             string Sql = "select * from tb_reader where name = '" + Name + "'";
-            DataTable dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(dt)[0];
+            DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
+            List<HK.Model.Reader> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static List<HK.Model.Reader> Rank()

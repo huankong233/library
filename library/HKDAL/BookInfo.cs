@@ -20,13 +20,14 @@ namespace HK.DAL
         {
             string Sql = "select * from tb_bookinfo where bookcode = '" + Bookcode + "'";
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            if (DtToList(Dt).Count>0)
+            List<HK.Model.BookInfo> List = DtToList(Dt);
+            if (List.Count == 0)
             {
-                return DtToList(Dt)[0];
+                return null;
             }
             else
             {
-                return null;
+                return List[0];
             }
         }
 

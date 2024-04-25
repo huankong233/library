@@ -39,7 +39,7 @@ namespace library
 
             if(response == "登陆成功")
             {
-                HK.Utils.JsHelper.Move("/index.aspx");
+                HK.Utils.JsHelper.Move("/index.aspx",1500);
                 Success(response);
             }
             else

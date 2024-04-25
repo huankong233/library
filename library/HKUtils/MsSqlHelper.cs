@@ -36,13 +36,13 @@ namespace HK.Utils
 
         public static int getNowIndex(string DBName, string IDCol = "id")
         {
-            string Sql = "SELECT TOP 1 * FROM " + DBName + " order by " + IDCol + " desc";
+            string Sql = "SELECT count('"+IDCol+"') FROM " + DBName;
             DataTable Dt = Query(Sql);
             if (Dt.Rows.Count == 0)
             {
                 return 1;
             }
-            return int.Parse(Dt.Rows[0][IDCol].ToString());
+            return int.Parse(Dt.Rows[0][0].ToString());
         }
     }
 }

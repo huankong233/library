@@ -30,23 +30,30 @@ namespace library
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            HK.Model.Library Library = new HK.Model.Library();
-            Library.Libraryname = libraryname.Text;
-            Library.Curator = curator.Text;
-            Library.Tel = tel.Text;
-            Library.Address= address.Text;
-            Library.Email = email.Text;
-            Library.Url = url.Text;
-            Library.Createdate = Convert.ToDateTime(createdate.Text);
-            Library.Introduce = introduce.Text;
+            try
+            {
+                HK.Model.Library Library = new HK.Model.Library();
+                Library.Libraryname = libraryname.Text;
+                Library.Curator = curator.Text;
+                Library.Tel = tel.Text;
+                Library.Address = address.Text;
+                Library.Email = email.Text;
+                Library.Url = url.Text;
+                Library.Createdate = Convert.ToDateTime(createdate.Text);
+                Library.Introduce = introduce.Text;
 
-            if (HK.BLL.Library.Insert(Library))
-            {
-                HK.Utils.JsHelper.Alert("修改成功");
+                if (HK.BLL.Library.Insert(Library))
+                {
+                    HK.Utils.JsHelper.Alert("修改成功");
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("修改失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("修改失败");
+                HK.Utils.JsHelper.Alert("修改失败，请检查提交的数据");
             }
         }
     }

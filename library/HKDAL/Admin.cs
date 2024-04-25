@@ -9,18 +9,34 @@ namespace HK.DAL
 {
     public class Admin
     {
-        public static List<HK.Model.Admin> Get(string Name)
+        public static HK.Model.Admin Get(string Name)
         {
             string Sql = "select * from tb_admin where name = '" + Name + "'";
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt);
+            List<HK.Model.Admin> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static HK.Model.Admin Get(int Id)
         {
             string Sql = "select * from tb_admin where id = " + Id;
             DataTable Dt = HK.Utils.MsSqlHelper.Query(Sql);
-            return DtToList(Dt)[0];
+            List<HK.Model.Admin> List = DtToList(Dt);
+            if (List.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return List[0];
+            }
         }
 
         public static List<HK.Model.Admin> DtToList(DataTable Dt)

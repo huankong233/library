@@ -21,33 +21,48 @@ namespace library.admin.book
 
         protected void BindData()
         {
-            string ReaderName = name.Text;
-            HK.Model.Reader Reader = HK.BLL.Reader.Get(ReaderName);
-            if (Reader == null)
+            try
             {
-                HK.Utils.JsHelper.Alert("用户不存在");
-                return;
-            }
+                string ReaderName = name.Text;
+                HK.Model.Reader Reader = HK.BLL.Reader.Get(ReaderName);
 
-            GridView1.DataSource = HK.BLL.BorrowAndBack.GetByReaderAndHaveBookNotBack(Reader.Id);
-            GridView1.DataBind();
+                if (Reader == null)
+                {
+                    HK.Utils.JsHelper.Alert("用户不存在");
+                    return;
+                }
+
+                GridView1.DataSource = HK.BLL.BorrowAndBack.GetByReaderAndHaveBookNotBack(Reader.Id);
+                GridView1.DataBind();
+            }
+            catch
+            {
+                HK.Utils.JsHelper.Alert("查询失败，请检查提交的数据是否合法");
+            }
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            HK.Model.BorrowAndBack BorrowAndBack = HK.BLL.BorrowAndBack.Get(int.Parse(e.CommandArgument.ToString()));
-            BorrowAndBack.Sjbacktime = DateTime.Now;
-            BorrowAndBack.Backoper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
-            BorrowAndBack.Isback = true;
+            try
+            {
+                HK.Model.BorrowAndBack BorrowAndBack = HK.BLL.BorrowAndBack.Get(int.Parse(e.CommandArgument.ToString()));
+                BorrowAndBack.Sjbacktime = DateTime.Now;
+                BorrowAndBack.Backoper = HK.BLL.Admin.Get(int.Parse(Session["Id"].ToString()));
+                BorrowAndBack.Isback = true;
 
-            if (HK.BLL.BorrowAndBack.Update(BorrowAndBack))
-            {
-                HK.Utils.JsHelper.Alert("还书成功");
-                BindData();
+                if (HK.BLL.BorrowAndBack.Update(BorrowAndBack))
+                {
+                    HK.Utils.JsHelper.Alert("还书成功");
+                    BindData();
+                }
+                else
+                {
+                    HK.Utils.JsHelper.Alert("还书失败");
+                }
             }
-            else
+            catch
             {
-                HK.Utils.JsHelper.Alert("还书失败");
+                HK.Utils.JsHelper.Alert("还书失败，可能已经还书");
             }
         }
     }

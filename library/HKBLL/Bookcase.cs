@@ -13,6 +13,11 @@ namespace HK.BLL
             return HK.DAL.Bookcase.Get();
         }
 
+        public static HK.Model.Bookcase Get(string Name)
+        {
+            return HK.DAL.Bookcase.Get(Name);
+        }
+
         public static HK.Model.Bookcase Get(int Id)
         {
             return HK.DAL.Bookcase.Get(Id);

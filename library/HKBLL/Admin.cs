@@ -15,7 +15,7 @@ namespace HK.BLL
             return HK.DAL.Admin.Insert(Admin);
         }
 
-        public static List<HK.Model.Admin> Get(string Name)
+        public static HK.Model.Admin Get(string Name)
         {
             return HK.DAL.Admin.Get(Name);
         }
@@ -27,17 +27,16 @@ namespace HK.BLL
 
         public static bool CheckIsExists(string Name)
         {
-            List<HK.Model.Admin> Data = HK.DAL.Admin.Get(Name);
-            return Data.Count > 0;
+            return HK.DAL.Admin.Get(Name) != null;
         }
 
         public static string Login(HK.Model.Admin Admin)
         {
-            List<HK.Model.Admin> Data = HK.DAL.Admin.Get(Admin.Name);
-            if (Data.Count <= 0) return "账户不存在";
-            if (Data[0].Pwd != Admin.Pwd) return "密码错误";
-            HttpContext.Current.Session["Id"] = Data[0].Id;
-            HttpContext.Current.Session["Name"] = Data[0].Name;
+            HK.Model.Admin Data = HK.DAL.Admin.Get(Admin.Name);
+            if (Data == null) return "账户不存在";
+            if (Data.Pwd != Admin.Pwd) return "密码错误";
+            HttpContext.Current.Session["Id"] = Data.Id;
+            HttpContext.Current.Session["Name"] = Data.Name;
             return "登陆成功";
         }
     }

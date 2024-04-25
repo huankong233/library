@@ -1,5 +1,5 @@
 C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\bin\Debug\HKUtils.dll
 C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\bin\Debug\HKUtils.pdb
-C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\obj\Debug\HKUtils.csprojResolveAssemblyReference.cache
 C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\obj\Debug\HKUtils.dll
 C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\obj\Debug\HKUtils.pdb
+C:\Users\huan_kong\Desktop\图书馆\library\HKUtils\obj\Debug\HKUtils.csprojResolveAssemblyReference.cache
